@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getConexoes();
+        Integer qtdConexoes = getIntent().getIntExtra("qtdConexoes", 0);
+        setTextQtdConexoes(qtdConexoes);
     }
 
     /*
@@ -38,25 +39,6 @@ public class MainActivity extends AppCompatActivity {
     public void openQueroAjudarOng(View view){
         Intent intent = new Intent(this, QueroAjudarOng.class);
         startActivity(intent);
-    }
-
-    /*
-    * Acessa a quantidade de conexões já realizadas (quando o usuário entra em contato com a ong)
-    * que está dentro do documento "counter" da coleção "conexoes", é acessado em específico o
-    * atributo quantidade, que é onde esse valor está sendo guardado.
-    * */
-    public void getConexoes(){
-
-        FirebaseFirestore.getInstance().collection("conexoes")
-                .document("counter")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Integer qtdConexoes = documentSnapshot.get("quantidade", Integer.class);
-                        setTextQtdConexoes(qtdConexoes);
-                    }
-                });
     }
 
     /*

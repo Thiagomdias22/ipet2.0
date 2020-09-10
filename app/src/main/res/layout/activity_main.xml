@@ -1,58 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#E5E7EC"
+    android:background="#FAFAFA"
     tools:context=".activities.MainActivity">
+
 
     <ImageView
         android:id="@+id/ivTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvApresentacao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024"
         app:srcCompat="@drawable/ipet_titulo" />
 
     <ImageView
         android:id="@+id/ivDog1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="238dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivTitulo"
+        app:layout_constraintVertical_bias="0.143"
         app:srcCompat="@drawable/dog1" />
 
     <TextView
         android:id="@+id/tvApresentacao"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginTop="50dp"
-        android:textColor="#716F89"
         android:gravity="center"
-        android:text="Ajude animais que precisam de você." />
+        android:text="Total de 10 conexões já realizadas"
+        android:textColor="#716F89"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivDog1"
+        app:layout_constraintVertical_bias="0.176" />
 
-    <Button
-        android:id="@+id/bSouUmaOng"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:background="@drawable/heart"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvApresentacao"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.951" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/style_button"
-        android:onClick="openSouUmaOng"
-        android:textColor="#fff"
-        android:text="Sou uma ONG" />
+        android:layout_marginTop="21dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvApresentacao"
+        app:layout_constraintVertical_bias="0.0">
 
-    <Button
-        android:id="@+id/bQueroAjudarOng"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/style_button"
-        android:onClick="openQueroAjudarOng"
-        android:textColor="#fff"
-        android:text="Quero ajudar uma ONG" />
+        <Button
+            android:id="@+id/bSouUmaOng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/style_button"
+            android:onClick="openSouUmaOng"
+            android:text="Sou uma ONG"
+            android:textColor="#fff"
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/bQueroAjudarOng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/style_button"
+            android:onClick="openQueroAjudarOng"
+            android:text="Quero ajudar uma ONG"
+            android:textColor="#fff"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

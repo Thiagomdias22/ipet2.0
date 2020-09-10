@@ -139,4 +139,8 @@ public class CadastroOng extends AppCompatActivity {
         Spinner sp = findViewById(idSpinner);
         return sp.getSelectedItem().toString();
     }
+
+    public void voltar(View view){
+        onBackPressed();
+    }
 }

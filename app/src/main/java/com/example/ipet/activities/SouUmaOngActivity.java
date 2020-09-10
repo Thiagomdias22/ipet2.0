@@ -102,4 +102,8 @@ public class SouUmaOngActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void voltar(View view){
+        onBackPressed();
+    }
+
 }

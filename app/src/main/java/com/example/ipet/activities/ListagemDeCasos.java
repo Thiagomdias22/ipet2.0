@@ -154,7 +154,7 @@ public class ListagemDeCasos extends AppCompatActivity {
     * */
     @Override
     public void onBackPressed() {
-        finish();
+        finishAffinity();
     }
 
 }

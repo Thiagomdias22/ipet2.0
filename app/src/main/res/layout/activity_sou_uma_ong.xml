@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_weight="1"
-                android:onClick="naoTenhoCadastro"
+                android:onClick="esqueciSenha"
                 android:text="Esqueci minha senha"
                 android:textColor="#716F89"
                 android:textSize="15.33dp"
@@ -130,4 +130,5 @@
             android:text="Não tenho cadastro" />
 
     </LinearLayout>
+
 </LinearLayout>

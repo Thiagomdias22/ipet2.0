@@ -13,16 +13,19 @@ import android.widget.Toast;
 
 import com.example.ipet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import static android.util.Patterns.EMAIL_ADDRESS;
 
 public class SouUmaOngActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     EditText etEmail, etSenha;
     Button bLogin;
-    TextView tvNaoTenhoCadastro;
+    TextView tvNaoTenhoCadastro, tvEsqueciSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class SouUmaOngActivity extends AppCompatActivity {
         etSenha = findViewById(R.id.etSenha);
         bLogin = findViewById(R.id.bLogin);
         tvNaoTenhoCadastro = findViewById(R.id.tvNaoTenhoCadastro);
+        tvEsqueciSenha = findViewById(R.id.tvEsqueciSenha);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -46,6 +50,7 @@ public class SouUmaOngActivity extends AppCompatActivity {
         etSenha.setEnabled(op);
         bLogin.setEnabled(op);
         tvNaoTenhoCadastro.setEnabled(op);
+        tvEsqueciSenha.setEnabled(op);
     }
 
     /*
@@ -55,7 +60,18 @@ public class SouUmaOngActivity extends AppCompatActivity {
     public void login(View view){
 
         String email = etEmail.getText().toString();
+
+        if(!validateEmailFormat(email)){
+            toast("Insira um email válido!");
+            return;
+        }
+
         String senha = etSenha.getText().toString();
+
+        if(senha.equals("")){
+            toast("Insira uma senha!");
+            return;
+        }
 
         realizarLogin(email, senha);
     }
@@ -77,8 +93,38 @@ public class SouUmaOngActivity extends AppCompatActivity {
                             listagemDeCasos();
                         } else {
                             enableViews(true); //se deu falha, ativa as views para tentar dnv
-                            Toast.makeText(getApplicationContext(),
-                                    "Credenciais Inválidas!", Toast.LENGTH_LONG).show();
+                            toast("Credenciais Inválidas!");
+                        }
+                    }
+                });
+    }
+
+    /*
+    * Caso o usuário esquecer a senha, esse método sera acionado, sendo necessário apenas o valor
+    * do input email, caso o email exista no bd, será mandado um email com um link para alterar
+    * a mesma.
+    * */
+    public void esqueciSenha(View view){
+
+        final String emailAtual = etEmail.getText().toString();
+
+        if(!validateEmailFormat(emailAtual)){
+            toast("Insira um email válido no campo E-Email para recuperar sua senha!");
+            return;
+        }
+
+        mAuth.sendPasswordResetEmail(emailAtual)
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        toast("Email não encontrado no nosso sistema!");
+                    }
+                })
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            toast("Email para recuperação de senha enviado para: " + emailAtual);
                         }
                     }
                 });
@@ -102,8 +148,27 @@ public class SouUmaOngActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*
+    * Método chamado quando clicado na setinha de voltar do proprio layout, simula o pressionamento
+    * do botão de voltar do telefone
+    * */
     public void voltar(View view){
         onBackPressed();
     }
 
+    /*
+    * Lança um simples toast, criado apenas para agilizar o uso do toast, pois aqui já estará
+    * configurado.
+    * */
+    public void toast(String msg){
+        Toast.makeText(getApplicationContext(),
+                msg, Toast.LENGTH_LONG).show();
+    }
+
+    /*
+    * Método utilizando uma lógica pronta para verificar se o email é válido ou não
+    * */
+    private boolean validateEmailFormat(final String email) {
+        return EMAIL_ADDRESS.matcher(email).matches();
+    }
 }

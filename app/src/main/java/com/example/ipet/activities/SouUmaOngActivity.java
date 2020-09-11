@@ -109,7 +109,7 @@ public class SouUmaOngActivity extends AppCompatActivity {
         final String emailAtual = etEmail.getText().toString();
 
         if(!validateEmailFormat(emailAtual)){
-            toast("Insira um email válido no campo E-Email para recuperar sua senha!");
+            toast("Insira um email válido no campo E-mail para recuperar sua senha!");
             return;
         }
 

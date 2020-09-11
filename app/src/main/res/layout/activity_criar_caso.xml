@@ -8,12 +8,38 @@
     android:background="#E5E7EC"
     tools:context=".activities.CriarCasoActivity">
 
-    <ImageView
-        android:id="@+id/ivTituloLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        app:srcCompat="@drawable/ipet_logo_pages" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ipet_logo_pages" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="124dp"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/ic_arrow_back"
+            android:onClick="voltar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.604" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView4"
@@ -26,10 +52,11 @@
 
     <EditText
         android:id="@+id/etTituloCaso"
-        android:layout_width="345dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:ems="10"
         android:textColorHint="#716F89"
         android:textSize="20dp"
@@ -40,10 +67,11 @@
 
     <EditText
         android:id="@+id/etDescricaoCaso"
-        android:layout_width="345dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:ems="10"
         android:textColorHint="#716F89"
         android:textSize="20dp"
@@ -54,11 +82,42 @@
         android:hint="Descricao" />
 
     <EditText
+        android:id="@+id/etAnimalCaso"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:textColorHint="#716F89"
+        android:textSize="20dp"
+        android:background="@drawable/style_edit"
+        android:padding="5dp"
+        android:inputType="textPersonName"
+        android:hint="Nome do animal" />
+
+    <EditText
+        android:id="@+id/etEspecieCaso"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:textColorHint="#716F89"
+        android:textSize="20dp"
+        android:background="@drawable/style_edit"
+        android:padding="5dp"
+        android:inputType="textPersonName"
+        android:hint="Espécie" />
+
+    <EditText
         android:id="@+id/etValorCaso"
-        android:layout_width="345dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:ems="10"
         android:textColorHint="#716F89"
         android:textSize="20dp"
@@ -69,10 +128,10 @@
 
     <Button
         android:id="@+id/btCriarCaso"
-        android:layout_width="345dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="45dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/style_button"
         android:textColor="#fff"

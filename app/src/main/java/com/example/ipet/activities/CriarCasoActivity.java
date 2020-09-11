@@ -119,4 +119,8 @@ public class CriarCasoActivity extends AppCompatActivity {
 
         return str.toString();
     }
+
+    public void voltar(View view){
+        onBackPressed();
+    }
 }

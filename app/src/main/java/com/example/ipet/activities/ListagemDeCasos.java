@@ -91,7 +91,7 @@ public class ListagemDeCasos extends AppCompatActivity {
 
                         ong = documentSnapshot.toObject(Ong.class);
 
-                        tvNomeDaOng.setText("Bem-vinda " + ong.getNome());
+                        tvNomeDaOng.setText("Bem-vinda, " + ong.getNome());
                         btCriarCaso.setEnabled(true); //dados da ong carregado, pode criar caso
 
                         casoUtils = new CasoUtils<>(db, casosOng, rvCasoOngAdapter,

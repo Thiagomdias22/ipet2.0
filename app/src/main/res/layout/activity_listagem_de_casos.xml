@@ -8,34 +8,43 @@
     android:orientation="vertical"
     tools:context=".activities.ListagemDeCasos">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ipet_logo_pages" />
 
         <TextView
-            android:id="@+id/tvLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="124dp"
             android:layout_weight="1"
-            android:layout_marginLeft="170dp"
-            android:layout_marginTop="32dp"
+            android:drawableRight="@drawable/ic_power"
             android:onClick="deslogar"
-            android:drawableRight="@drawable/ic_power" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.604" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tvNomeDaOng"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:paddingLeft="10dp"
         android:textSize="24dp"
         android:layout_marginStart="16dp"
@@ -51,7 +60,7 @@
             android:id="@+id/rvCasosOng"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="13dp"
             android:background="#E5E7EC"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,16 +70,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:backgroundTint="#6C63FF"
+            android:backgroundTint="#3CB7BC"
             android:onClick="criarCaso"
+            android:src="@drawable/ic_add"
             app:fabCustomSize="65dp"
+            app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="@+id/rvCasosOng"
             app:layout_constraintEnd_toEndOf="@+id/rvCasosOng"
             app:layout_constraintHorizontal_bias="0.953"
             app:layout_constraintStart_toStartOf="@+id/rvCasosOng"
             app:layout_constraintTop_toTopOf="@+id/rvCasosOng"
-            app:layout_constraintVertical_bias="0.94"
-            app:srcCompat="@drawable/ic_add" />
+            app:layout_constraintVertical_bias="0.933" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

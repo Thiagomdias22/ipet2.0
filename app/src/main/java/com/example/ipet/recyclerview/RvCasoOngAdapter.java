@@ -1,11 +1,13 @@
 package com.example.ipet.recyclerview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipet.R;
@@ -31,12 +33,12 @@ public class RvCasoOngAdapter extends RecyclerView.Adapter<RvCasoOngAdapter.Caso
         this.onClickListener = onClickListener;
     }
 
+    @NonNull
     @Override
-    public CasoViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public CasoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.adapter_card_caso,
                 viewGroup, false);
-        CasoViewHolder holder = new CasoViewHolder(view);
-        return holder;
+        return new CasoViewHolder(view);
     }
 
     @Override
@@ -44,6 +46,7 @@ public class RvCasoOngAdapter extends RecyclerView.Adapter<RvCasoOngAdapter.Caso
         return casosOng != null ? casosOng.size() : 0;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(final CasoViewHolder holder, final int position) {
 

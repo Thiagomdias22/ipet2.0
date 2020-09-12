@@ -1,11 +1,17 @@
-package com.example.ipet.confspinner;
+package com.example.ipet.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.ipet.apiufcity.DadosApi;
 import com.example.ipet.R;
+import com.example.ipet.confspinner.ConfigureSpinner;
+import com.example.ipet.confspinner.NothingSelectedSpinnerAdapter;
+import com.example.ipet.utils.GeralUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +21,7 @@ public class SpinnerUtils {
     /*
      * Método para inicializar, inserir dados e configurar os spinners de UF e Cidade.
      * */
-    public static void confSpinners(final Context context, final Spinner spinnerUF, String titleSpUf,
+    public static void confSpinnersUfCity(final Context context, final Spinner spinnerUF, String titleSpUf,
                                     final Spinner spinnerCity, final String titleSpCity) {
 
         final String urlStatic = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/";
@@ -40,10 +46,31 @@ public class SpinnerUtils {
      * Método que irá inicializar um style_spinner, setando um conjunto de dados vazios, porém também
      * setará um titulo, adicionando um adaptador personalizado
      * */
-    private static void initSpinner(Spinner spinner, String title, Context context) {
-        //spinner_st é desativado, e só é ativado na classe ConfigureSpinner
+    private static void initSpinner(Spinner spinner, String title, final Context context) {
+        //spinner é desativado, e só é ativado na classe ConfigureSpinner
         spinner.setEnabled(false);
         setDataSpinner(spinner, context, title, Collections.singletonList(""));
+
+        //se for o spinner de cidade, será necessáriod deixa-lo ativado
+        //para que o evento de click seja possível, a fim de avisar o usuário
+        //que deve-se selecionar primeiro a UF
+        if(spinner.getId() == R.id.spCidade){
+
+            spinner.setEnabled(true);
+            spinner.setOnTouchListener(new View.OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    if (event.getAction() == MotionEvent.ACTION_UP){
+                        GeralUtils.toast(context, "Informe o UF primeiro " +
+                                "para carregar as cidades!");
+                    }
+
+                    return true;
+                }
+            });
+        }
     }
 
     /*
@@ -51,6 +78,9 @@ public class SpinnerUtils {
      * */
     private static void setDataSpCity(Context context, Spinner spinnerCity, String titleSpCity,
                                       String urlStatic, String itemSelected) {
+
+        //remove o aviso que aparecia alertando o usuário a escolher o UF primeiro.
+        spinnerCity.setOnTouchListener(null);
 
         new ConfigureSpinner(context, spinnerCity, titleSpCity,
                 new DadosApi(urlStatic + itemSelected + "/municipios", "nome"),

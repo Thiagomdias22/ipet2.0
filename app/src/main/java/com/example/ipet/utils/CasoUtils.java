@@ -1,4 +1,4 @@
-package com.example.ipet.firebase;
+package com.example.ipet.utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +17,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CasoUtils<T extends RecyclerView.ViewHolder> {
 
@@ -123,7 +124,7 @@ public class CasoUtils<T extends RecyclerView.ViewHolder> {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                        Ong ong = task.getResult().toObject(Ong.class);
+                        Ong ong = Objects.requireNonNull(task.getResult()).toObject(Ong.class);
 
                         casosOngs.add(new Caso(
                            document.getString("id"),
@@ -135,7 +136,7 @@ public class CasoUtils<T extends RecyclerView.ViewHolder> {
                            ong
                         ));
 
-                        sendSinalsToViews();
+                        sendSinalsToViews(casosOngs.size()-1, DocumentChange.Type.ADDED);
                     }
                 });
     }
@@ -152,7 +153,7 @@ public class CasoUtils<T extends RecyclerView.ViewHolder> {
 
         if(posicao != -1){
             casosOngs.remove(posicao);
-            sendSinalsToViews();
+            sendSinalsToViews(posicao, DocumentChange.Type.REMOVED);
         }
     }
 
@@ -166,14 +167,15 @@ public class CasoUtils<T extends RecyclerView.ViewHolder> {
         int posicao = getPosiCaso(document.getId());
 
         if(posicao != -1){
-
             Caso caso = casosOngs.get(posicao);
             caso.setId(document.getString("id"));
             caso.setTitulo(document.getString("titulo"));
             caso.setDescricao(document.getString("descricao"));
+            caso.setNomeAnimal(document.getString("nomeAnimal"));
+            caso.setEspecie(document.getString("especie"));
             caso.setValor(document.getDouble("valor"));
 
-            rvAdapter.notifyDataSetChanged();
+            sendSinalsToViews(posicao, DocumentChange.Type.MODIFIED);
         }
     }
 
@@ -197,7 +199,13 @@ public class CasoUtils<T extends RecyclerView.ViewHolder> {
     * o método notifyDataSetChanged() e caso a interface de changes não for nula, seta o textview
     * contador de casos com o valor atual do tamanho da lista.
     * */
-    public void sendSinalsToViews(){
+    public void sendSinalsToViews(int position, DocumentChange.Type type){
+
+        switch (type) {
+            case ADDED: rvAdapter.notifyItemInserted(position); break;
+            case MODIFIED: rvAdapter.notifyItemChanged(position); break;
+            case REMOVED: rvAdapter.notifyItemRemoved(position); break;
+        }
 
         rvAdapter.notifyDataSetChanged();
 

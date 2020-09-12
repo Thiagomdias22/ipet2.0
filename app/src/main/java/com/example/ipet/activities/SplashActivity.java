@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ipet.R;
-import com.example.ipet.firebase.UserUtils;
+import com.example.ipet.utils.UserUtils;
 
 public class SplashActivity extends AppCompatActivity {
 

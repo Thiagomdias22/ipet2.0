@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.ipet.R;
 import com.example.ipet.entities.Caso;
-import com.example.ipet.firebase.CasoUtils;
+import com.example.ipet.utils.CasoUtils;
 import com.example.ipet.recyclerview.RvTodosCasosOngAdapter;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;

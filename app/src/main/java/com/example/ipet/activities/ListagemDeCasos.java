@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -16,8 +17,8 @@ import android.widget.Toast;
 import com.example.ipet.R;
 import com.example.ipet.entities.Caso;
 import com.example.ipet.entities.Ong;
-import com.example.ipet.firebase.CasoUtils;
-import com.example.ipet.firebase.UserUtils;
+import com.example.ipet.utils.CasoUtils;
+import com.example.ipet.utils.UserUtils;
 import com.example.ipet.recyclerview.RvCasoOngAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,14 +68,12 @@ public class ListagemDeCasos extends AppCompatActivity {
                 new RvCasoOngAdapter.CasoOnClickListener() {
                     @Override
                     public void onClickTrash(int position, TextView tv) {
-                        System.out.println("entrou no método de apagar caso " + position);
                         tv.setEnabled(false); //garante que o icone nao será clicável durante a op
                         apagarCaso(casosOng.get(position).getId(), tv);
                     }
                 });
 
         rvCasosOng.setAdapter(rvCasoOngAdapter);
-
         getDadosOng();
     }
 
@@ -86,11 +85,13 @@ public class ListagemDeCasos extends AppCompatActivity {
                 .document(emailOng)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                         ong = documentSnapshot.toObject(Ong.class);
 
+                        assert ong != null;
                         tvNomeDaOng.setText("Bem-vinda, " + ong.getNome());
                         btCriarCaso.setEnabled(true); //dados da ong carregado, pode criar caso
 

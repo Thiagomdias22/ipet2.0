@@ -1,14 +1,13 @@
 package com.example.ipet.confspinner;
 
 import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.example.ipet.apiufcity.ConsumerData;
 import com.example.ipet.apiufcity.DadosApi;
-import com.example.ipet.utils.GeralUtils;
+import com.example.ipet.utils.SpinnerUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ConfigureSpinner {
     protected Boolean isSorted;
     protected String title;
 
-    public ConfigureSpinner(Context context, Spinner spinner, String title,
+    public ConfigureSpinner(final Context context, Spinner spinner, String title,
                             DadosApi dadosApi, Boolean isSorted, Action action) {
         this.spinner = spinner;
         this.dadosApi = dadosApi;

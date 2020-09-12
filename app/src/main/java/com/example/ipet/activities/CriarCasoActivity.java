@@ -8,10 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ipet.R;
-import com.example.ipet.confspinner.SpinnerUtils;
+import com.example.ipet.utils.SpinnerUtils;
 import com.example.ipet.entities.Ong;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,6 +28,7 @@ public class CriarCasoActivity extends AppCompatActivity {
     FirebaseFirestore db;
     Ong ong;
     EditText etTituloCaso, etDescricaoCaso, etAnimalCaso, etValorCaso;
+    TextView tvVoltar;
     Spinner spEspecieCaso;
     Button btCriarCaso;
 
@@ -42,6 +44,8 @@ public class CriarCasoActivity extends AppCompatActivity {
         etDescricaoCaso = findViewById(R.id.etDescricaoCaso);
         etAnimalCaso = findViewById(R.id.etAnimalCaso);
         etValorCaso = findViewById(R.id.etValorCaso);
+
+        tvVoltar = findViewById(R.id.tvVoltar);
 
         spEspecieCaso = findViewById(R.id.spEspecieCaso);
 
@@ -110,6 +114,7 @@ public class CriarCasoActivity extends AppCompatActivity {
         etAnimalCaso.setEnabled(op);
         spEspecieCaso.setEnabled(op);
         btCriarCaso.setEnabled(op);
+        tvVoltar.setEnabled(op);
     }
 
     /*

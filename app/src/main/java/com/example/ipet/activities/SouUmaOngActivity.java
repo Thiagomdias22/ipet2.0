@@ -24,7 +24,7 @@ public class SouUmaOngActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText etEmail, etSenha;
     Button bLogin;
-    TextView tvNaoTenhoCadastro, tvEsqueciSenha;
+    TextView tvNaoTenhoCadastro, tvEsqueciSenha, voltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class SouUmaOngActivity extends AppCompatActivity {
         bLogin = findViewById(R.id.bLogin);
         tvNaoTenhoCadastro = findViewById(R.id.tvNaoTenhoCadastro);
         tvEsqueciSenha = findViewById(R.id.tvEsqueciSenha);
+        voltar = findViewById(R.id.voltar);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -50,6 +51,7 @@ public class SouUmaOngActivity extends AppCompatActivity {
         bLogin.setEnabled(op);
         tvNaoTenhoCadastro.setEnabled(op);
         tvEsqueciSenha.setEnabled(op);
+        voltar.setEnabled(op);
     }
 
     /*

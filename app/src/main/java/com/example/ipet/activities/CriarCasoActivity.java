@@ -7,14 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ipet.R;
+import com.example.ipet.confspinner.SpinnerUtils;
 import com.example.ipet.entities.Ong;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -23,7 +26,8 @@ public class CriarCasoActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     Ong ong;
-    EditText etTituloCaso, etDescricaoCaso, etValorCaso;
+    EditText etTituloCaso, etDescricaoCaso, etAnimalCaso, etValorCaso;
+    Spinner spEspecieCaso;
     Button btCriarCaso;
 
     @Override
@@ -36,9 +40,19 @@ public class CriarCasoActivity extends AppCompatActivity {
 
         etTituloCaso = findViewById(R.id.etTituloCaso);
         etDescricaoCaso = findViewById(R.id.etDescricaoCaso);
+        etAnimalCaso = findViewById(R.id.etAnimalCaso);
         etValorCaso = findViewById(R.id.etValorCaso);
 
+        spEspecieCaso = findViewById(R.id.spEspecieCaso);
+
         btCriarCaso = findViewById(R.id.btCriarCaso);
+
+        SpinnerUtils.setDataSpinner(
+                spEspecieCaso,  //spinner
+                getApplicationContext(),   //contexto
+                "Espécie",     //hint do spinner
+                Arrays.asList("Cachorro", "Gato", "Coelho") //conteudo do spinner
+        );
     }
 
     /*
@@ -50,12 +64,16 @@ public class CriarCasoActivity extends AppCompatActivity {
         String id = getRandomId();
         String titulo = etTituloCaso.getText().toString();
         String descricao = etDescricaoCaso.getText().toString();
+        String nomeAnimal = etAnimalCaso.getText().toString();
+        String especie = spEspecieCaso.getSelectedItem().toString();
         Double valor = Double.parseDouble(etValorCaso.getText().toString());
 
         Map<String, Object> caso = new HashMap<>();
         caso.put("id", id);
         caso.put("titulo", titulo);
         caso.put("descricao", descricao);
+        caso.put("nomeAnimal", nomeAnimal);
+        caso.put("especie", especie);
         caso.put("valor", valor);
 
         setEnableViews(false);
@@ -89,6 +107,8 @@ public class CriarCasoActivity extends AppCompatActivity {
         etTituloCaso.setEnabled(op);
         etDescricaoCaso.setEnabled(op);
         etValorCaso.setEnabled(op);
+        etAnimalCaso.setEnabled(op);
+        spEspecieCaso.setEnabled(op);
         btCriarCaso.setEnabled(op);
     }
 

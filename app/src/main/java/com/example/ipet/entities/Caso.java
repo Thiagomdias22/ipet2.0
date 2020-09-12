@@ -10,16 +10,20 @@ public class Caso implements Serializable, Parcelable {
     private String id;
     private String titulo;
     private String descricao;
+    private String nomeAnimal;
+    private String especie;
     private Double valor;
     private Ong ong;
 
     public Caso(){
     }
 
-    public Caso(String id, String titulo, String descricao, Double valor, Ong ong) {
+    public Caso(String id, String titulo, String descricao, String nomeAnimal, String especie, Double valor, Ong ong) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
+        this.nomeAnimal = nomeAnimal;
+        this.especie = especie;
         this.valor = valor;
         this.ong = ong;
     }
@@ -64,12 +68,30 @@ public class Caso implements Serializable, Parcelable {
         this.ong = ong;
     }
 
+    public String getNomeAnimal() {
+        return nomeAnimal;
+    }
+
+    public void setNomeAnimal(String nomeAnimal) {
+        this.nomeAnimal = nomeAnimal;
+    }
+
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
     @Override
     public String toString() {
         return "Caso{" +
                 "id='" + id + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
+                ", nomeAnimal='" + nomeAnimal + '\'' +
+                ", especie='" + especie + '\'' +
                 ", valor=" + valor +
                 ", ong=" + ong +
                 '}';
@@ -84,6 +106,8 @@ public class Caso implements Serializable, Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(titulo);
+        dest.writeString(nomeAnimal);
+        dest.writeString(especie);
         dest.writeString(descricao);
         dest.writeDouble(valor);
         dest.writeParcelable(ong, flags);
@@ -92,6 +116,8 @@ public class Caso implements Serializable, Parcelable {
     public Caso(Parcel in) {
         id = in.readString();
         titulo = in.readString();
+        nomeAnimal = in.readString();
+        especie = in.readString();
         descricao = in.readString();
         valor = in.readDouble();
         ong = in.readParcelable(Ong.class.getClassLoader());

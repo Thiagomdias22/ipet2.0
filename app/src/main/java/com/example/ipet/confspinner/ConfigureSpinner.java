@@ -1,14 +1,14 @@
 package com.example.ipet.confspinner;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.ipet.apiufcity.ConsumerData;
 import com.example.ipet.apiufcity.DadosApi;
-import com.example.ipet.R;
+import com.example.ipet.utils.GeralUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -40,7 +40,7 @@ public class ConfigureSpinner {
 
     /*
     * Método que irá configurar um style_spinner quase por completo, definindo os dados do mesmo, além
-    * de definir a ação de quando um item for clicado
+    * de definir a ação de quando um item for clicado, ou quando o spinner for clicado
     * */
     public void runConf(){
 
@@ -88,12 +88,7 @@ public class ConfigureSpinner {
                     Collections.sort(dados);
                 }
 
-                spinner.setAdapter(
-                        new NothingSelectedSpinnerAdapter(
-                                new ArrayAdapter<>(context, R.layout.spinner_row, dados),
-                                title, R.layout.spinner_row, context
-                        )
-                );
+                SpinnerUtils.setDataSpinner(spinner, context, title, dados);
 
                 spinner.setEnabled(true); //ativa quando os dados chegar
             }

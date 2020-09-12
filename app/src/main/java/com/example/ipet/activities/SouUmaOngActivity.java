@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.ipet.R;
+import com.example.ipet.utils.GeralUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -62,14 +61,14 @@ public class SouUmaOngActivity extends AppCompatActivity {
         String email = etEmail.getText().toString();
 
         if(!validateEmailFormat(email)){
-            toast("Insira um email válido!");
+            GeralUtils.toast(getApplicationContext(), "Insira um email válido!");
             return;
         }
 
         String senha = etSenha.getText().toString();
 
         if(senha.equals("")){
-            toast("Insira uma senha!");
+            GeralUtils.toast(getApplicationContext(), "Insira uma senha!");
             return;
         }
 
@@ -93,7 +92,7 @@ public class SouUmaOngActivity extends AppCompatActivity {
                             listagemDeCasos();
                         } else {
                             enableViews(true); //se deu falha, ativa as views para tentar dnv
-                            toast("Credenciais Inválidas!");
+                            GeralUtils.toast(getApplicationContext(),"Credenciais Inválidas!");
                         }
                     }
                 });
@@ -109,7 +108,8 @@ public class SouUmaOngActivity extends AppCompatActivity {
         final String emailAtual = etEmail.getText().toString();
 
         if(!validateEmailFormat(emailAtual)){
-            toast("Insira um email válido no campo E-mail para recuperar sua senha!");
+            GeralUtils.toast(getApplicationContext(), "Insira um email válido " +
+                    "no campo E-mail para recuperar sua senha!");
             return;
         }
 
@@ -117,14 +117,17 @@ public class SouUmaOngActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        toast("Email não encontrado no nosso sistema!");
+                        GeralUtils.toast(getApplicationContext(), "Email não encontrado " +
+                                "no nosso sistema!");
                     }
                 })
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            toast("Email para recuperação de senha enviado para: " + emailAtual);
+                            GeralUtils.toast(getApplicationContext(),
+                                    "Email para recuperação de senha enviado para: "
+                                            + emailAtual);
                         }
                     }
                 });
@@ -154,15 +157,6 @@ public class SouUmaOngActivity extends AppCompatActivity {
     * */
     public void voltar(View view){
         onBackPressed();
-    }
-
-    /*
-    * Lança um simples toast, criado apenas para agilizar o uso do toast, pois aqui já estará
-    * configurado.
-    * */
-    public void toast(String msg){
-        Toast.makeText(getApplicationContext(),
-                msg, Toast.LENGTH_LONG).show();
     }
 
     /*

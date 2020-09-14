@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5E7EC"
+    android:background="#FAFAFA"
     android:orientation="vertical"
     tools:context=".activities.ListagemDeCasos">
 
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="13dp"
-            android:background="#E5E7EC"
+            android:background="#FAFAFA"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

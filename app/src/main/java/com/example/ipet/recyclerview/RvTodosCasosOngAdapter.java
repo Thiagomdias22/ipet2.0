@@ -1,5 +1,6 @@
 package com.example.ipet.recyclerview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,10 +34,23 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
 
     @Override
     public  RvTodosCasosOngAdapter.CasoViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.adapter_card_todos_casos,
-                viewGroup, false);
-        RvTodosCasosOngAdapter.CasoViewHolder holder = new  RvTodosCasosOngAdapter.CasoViewHolder(view);
-        return holder;
+        View view;
+        CasoViewHolder casoViewHolder;
+
+        switch (viewType) {
+            case 0 :
+                view = LayoutInflater.from(context).inflate(R.layout.adapter_boasvindas_user,
+                        viewGroup, false);
+                casoViewHolder = new CasoViewHolder(view, viewType);
+                break;
+
+            default:
+                view = LayoutInflater.from(context).inflate(R.layout.adapter_card_todos_casos,
+                        viewGroup, false);
+                casoViewHolder = new CasoViewHolder(view, viewType);
+        }
+
+        return casoViewHolder;
     }
 
     @Override
@@ -44,22 +58,35 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
         return casosOng != null ? casosOng.size() : 0;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(final  RvTodosCasosOngAdapter.CasoViewHolder holder, final int position) {
 
-        Caso caso = casosOng.get(position);
+        if(position != 0) {
 
-        holder.tvOng.setText(caso.getOng().getNome());
-        holder.tvTitulo.setText(caso.getTitulo());
-        holder.tvDescricao.setText(caso.getDescricao());
-        holder.tvValor.setText(String.valueOf(caso.getValor()));
+            Caso caso = casosOng.get(position);
 
-        holder.tvMaisDetalhes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickListener.onClickDetails(position);
-            }
-        });
+            holder.tvOng.setText(caso.getOng().getNome());
+            holder.tvTitulo.setText(caso.getTitulo());
+            holder.tvDescricao.setText(caso.getDescricao());
+            holder.tvValor.setText(String.valueOf(caso.getValor()));
+            holder.tvAnimalData.setText(caso.getNomeAnimal() + " (" + caso.getEspecie() + ")");
+
+            holder.tvMaisDetalhes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.onClickDetails(position);
+                }
+            });
+        }
+    }
+
+    //Overriden so that I can display custom rows in the recyclerview
+    @Override
+    public int getItemViewType(int position) {
+        int viewType = 1; //Default is 1
+        if (position == 0) viewType = 0; //if zero, it will be a header view
+        return viewType;
     }
 
     public static class CasoViewHolder extends RecyclerView.ViewHolder {
@@ -68,17 +95,19 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
         TextView tvTitulo;
         TextView tvDescricao;
         TextView tvValor;
+        TextView tvAnimalData;
         TextView tvMaisDetalhes;
-        View view;
 
-        public CasoViewHolder(View view) {
+        public CasoViewHolder(View view, int viewType) {
             super(view);
-            this.view = view;
-            tvOng = view.findViewById(R.id.tvOngData);
-            tvTitulo = view.findViewById(R.id.tvTitleData);
-            tvDescricao = view.findViewById(R.id.tvDescricaoData);
-            tvValor = view.findViewById(R.id.tvValorData);
-            tvMaisDetalhes = view.findViewById(R.id.tvMaisDetalhes);
+            if(viewType != 0) {
+                tvOng = view.findViewById(R.id.tvOngData);
+                tvTitulo = view.findViewById(R.id.tvTitleData);
+                tvDescricao = view.findViewById(R.id.tvDescricaoData);
+                tvValor = view.findViewById(R.id.tvValorData);
+                tvAnimalData = view.findViewById(R.id.tvAnimalData);
+                tvMaisDetalhes = view.findViewById(R.id.tvMaisDetalhes);
+            }
         }
     }
 

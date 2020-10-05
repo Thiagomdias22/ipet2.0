@@ -25,13 +25,13 @@ public class DetalhesCasoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_caso);
-
+        /*
         email = findViewById(R.id.btEmailOngCase);
         Whatsapp = findViewById(R.id.btWhatsappOngCase);
 
         caso = getIntent().getParcelableExtra("casoOng");
 
-        setarInformacoes();
+        setarInformacoes(); */
     }
 
     /*

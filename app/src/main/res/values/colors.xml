@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3CB7BC</color>
     <color name="colorPrimaryDark">#ccc</color>
     <color name="colorAccent">#E5E7EC</color>
+
+    <!--    DETALHES DE UM CASO-->
+    <color name="colorCachorro">#CAA184</color>
+    <color name="colorGato">#FFCEC2</color>
+    <color name="colorCoelho">#F88767</color>
+
 </resources>

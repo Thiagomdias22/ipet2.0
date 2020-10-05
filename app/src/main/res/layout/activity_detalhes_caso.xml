@@ -15,30 +15,32 @@
         tools:layout_editor_absoluteY="1dp">
 
         <LinearLayout
+            android:id="@+id/main2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#FAFAFA">
+            android:background="#FAFAFA"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main3"
                 android:layout_width="match_parent"
-                android:layout_height="900dp"
+                android:layout_height="wrap_content"
                 android:background="#FAFAFA">
 
                 <ImageView
-                    android:id="@+id/LogoAnimal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="5dp"
+                    android:id="@+id/ivLogoAnimal"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/detalhes_cachorro"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/logo_dog"
+                    android:elevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.489"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-                </ImageView>
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/tvVoltar"
@@ -49,22 +51,26 @@
                     android:elevation="5dp"
                     android:onClick="voltar"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-                    app:layout_constraintEnd_toEndOf="@+id/LogoAnimal"
+                    app:layout_constraintEnd_toEndOf="@+id/ivLogoAnimal"
                     app:layout_constraintHorizontal_bias="0.072"
-                    app:layout_constraintStart_toStartOf="@+id/LogoAnimal"
-                    app:layout_constraintTop_toTopOf="@+id/LogoAnimal"
+                    app:layout_constraintStart_toStartOf="@+id/ivLogoAnimal"
+                    app:layout_constraintTop_toTopOf="@+id/ivLogoAnimal"
                     app:layout_constraintVertical_bias="0.109" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="337dp"
-                    android:layout_height="556dp"
-                    android:elevation="5dp"
+                    android:id="@+id/main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
                     android:background="@drawable/style_detalhes_caso"
+                    android:elevation="5dp"
+                    android:paddingBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/LogoAnimal"
-                    app:layout_constraintVertical_bias="0.0">
+                    app:layout_constraintTop_toBottomOf="@+id/ivLogoAnimal"
+                    app:layout_constraintVertical_bias="0">
 
                     <TextView
                         android:id="@+id/tvOngInfo"
@@ -82,14 +88,14 @@
 
                     <TextView
                         android:id="@+id/tvOngData"
-                        android:layout_width="wrap_content"
+                        android:layout_width="142dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="TesteOng"
+                        android:layout_marginTop="4dp"
+                        android:text="fsdfsdf asdas asdasd asasd asda"
                         android:textColor="#716F89"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.05"
+                        app:layout_constraintHorizontal_bias="0.063"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvOngInfo" />
 
@@ -97,7 +103,7 @@
                         android:id="@+id/tvtTitleInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="160dp"
+                        android:layout_marginTop="8dp"
                         android:text="CASO:"
                         android:textColor="#716F89"
                         android:textSize="24sp"
@@ -105,14 +111,14 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.048"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvOngData" />
 
                     <TextView
                         android:id="@+id/tvTitleData"
-                        android:layout_width="wrap_content"
+                        android:layout_width="142dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Cadelinha triste"
+                        android:layout_marginTop="4dp"
+                        android:text="Cadelinha triste asd asd asasd as asd"
                         android:textColor="#716F89"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -137,13 +143,13 @@
                     <TextView
                         android:id="@+id/tvDescricaoData"
                         android:layout_width="176dp"
-                        android:layout_height="146dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:text="Mussum Ipsum, cacilds vidis litro abertis. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Atirei o pau no gatis, per gatis num morreus. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. "
                         android:textColor="#716F89"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.937"
+                        app:layout_constraintHorizontal_bias="0.919"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvtDescricaoInfo" />
 
@@ -151,7 +157,7 @@
                         android:id="@+id/tvtValorInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="36dp"
+                        android:layout_marginTop="8dp"
                         android:text="VALOR:"
                         android:textColor="#716F89"
                         android:textSize="24sp"
@@ -159,18 +165,18 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.051"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvtTitleInfo" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvTitleData" />
 
                     <TextView
                         android:id="@+id/tvValorData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="4dp"
                         android:text="R$ 695.34"
                         android:textColor="#716F89"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.062"
+                        app:layout_constraintHorizontal_bias="0.049"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvtValorInfo" />
 
@@ -178,7 +184,7 @@
                         android:id="@+id/tvSalveDia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="60dp"
+                        android:layout_marginTop="80dp"
                         android:text="Salve o dia!"
                         android:textColor="#716F89"
                         android:textSize="24sp"
@@ -186,7 +192,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.06"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvValorData" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvtValorInfo" />
 
                     <TextView
                         android:id="@+id/tvSejaHeroi"
@@ -257,16 +263,16 @@
                     android:id="@+id/constraintLayout"
                     android:layout_width="288dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="280dp"
+                    android:layout_marginTop="220dp"
                     android:background="@drawable/style_layout"
                     android:elevation="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintHorizontal_bias="0.495"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="@+id/ivLogoAnimal">
 
                     <TextView
-                        android:id="@+id/tfNomeAnimal"
+                        android:id="@+id/tvNomeAnimal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Dog mal"
@@ -281,7 +287,7 @@
                         app:layout_constraintVertical_bias="0.19" />
 
                     <TextView
-                        android:id="@+id/tfRaca"
+                        android:id="@+id/tvRaca"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cachorro"
@@ -291,11 +297,11 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.074"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tfNomeAnimal"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNomeAnimal"
                         app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
-                        android:id="@+id/tfLocalizacao"
+                        android:id="@+id/tvLocalizacao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Orizona/GO"
@@ -305,20 +311,20 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.09"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tfNomeAnimal"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNomeAnimal"
                         app:layout_constraintVertical_bias="0.7" />
 
                     <ImageView
-                        android:id="@+id/tfImagemAnimal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rosto_cachorro"
+                        android:id="@+id/ivIconAnimal"
+                        android:layout_width="94dp"
+                        android:layout_height="89dp"
+                        android:background="@drawable/icon_dog"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.867"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.076">
+                        app:layout_constraintVertical_bias="0.49">
 
                     </ImageView>
 

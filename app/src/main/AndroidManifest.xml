@@ -18,6 +18,7 @@
         <activity android:name=".activities.QueroAjudarOng" />
         <activity android:name=".activities.SouUmaOngActivity" />
         <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.Filter" />
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/AppThemeSplash">

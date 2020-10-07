@@ -73,4 +73,9 @@ public class QueroAjudarOng extends AppCompatActivity {
         onBackPressed();
     }
 
+    public void Filtro(View view) {
+        Intent intent = new Intent(this, Filter.class);
+        startActivity(intent);
+    }
+
 }

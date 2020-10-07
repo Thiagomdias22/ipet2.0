@@ -52,7 +52,7 @@
                     android:onClick="voltar"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                     app:layout_constraintEnd_toEndOf="@+id/ivLogoAnimal"
-                    app:layout_constraintHorizontal_bias="0.072"
+                    app:layout_constraintHorizontal_bias="0.03"
                     app:layout_constraintStart_toStartOf="@+id/ivLogoAnimal"
                     app:layout_constraintTop_toTopOf="@+id/ivLogoAnimal"
                     app:layout_constraintVertical_bias="0.109" />
@@ -131,26 +131,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="88dp"
+                        android:layout_marginEnd="40dp"
                         android:text="DESCRIÇÃO:"
                         android:textColor="#716F89"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.758"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvDescricaoData"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tvDescricaoData"
                         android:layout_width="176dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="4dp"
                         android:text="Mussum Ipsum, cacilds vidis litro abertis. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Atirei o pau no gatis, per gatis num morreus. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. "
                         android:textColor="#716F89"
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.919"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvtDescricaoInfo" />
 
                     <TextView

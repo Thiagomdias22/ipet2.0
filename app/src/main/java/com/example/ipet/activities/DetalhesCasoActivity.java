@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.example.ipet.R;
 import com.example.ipet.entities.Caso;
 import com.example.ipet.entities.Ong;
+import com.example.ipet.utils.GeralUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,8 +42,8 @@ public class DetalhesCasoActivity extends AppCompatActivity {
     }
 
     /*
-    * Pega todos os dados do caso e seta nos TextView's
-    * */
+     * Pega todos os dados do caso e seta nos TextView's
+     * */
     public void setarInformacoes(){
 
         Ong ong = caso.getOng(); //Pega a ong do caso
@@ -62,6 +64,18 @@ public class DetalhesCasoActivity extends AppCompatActivity {
         int wrapSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         main3.measure(wrapSpec, wrapSpec);
         main3.getLayoutParams().height = main3.getMeasuredHeight() + 80;
+    }
+
+    public int sizeIcon(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return (int) (displayMetrics.heightPixels*0.1);
+    }
+
+    public int sizeButton(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return (int) (displayMetrics.widthPixels*0.38);
     }
 
     public void setImgAndColorAnimal(){
@@ -91,8 +105,9 @@ public class DetalhesCasoActivity extends AppCompatActivity {
         ivIconAnimal.setBackgroundResource(icon);
 
         //seta tamanho no icone do animal
-        ivIconAnimal.getLayoutParams().width = 260;
-        ivIconAnimal.getLayoutParams().height = 260;
+        int size = sizeIcon();
+        ivIconAnimal.getLayoutParams().width = size;
+        ivIconAnimal.getLayoutParams().height = size;
 
         //define o tema dos botões
         GradientDrawable gd = new GradientDrawable();
@@ -101,28 +116,32 @@ public class DetalhesCasoActivity extends AppCompatActivity {
 
         btEmail.setBackground(gd);
         btWhatsapp.setBackground(gd);
+
+        btEmail.getLayoutParams().width = sizeButton();
+        btWhatsapp.getLayoutParams().width = sizeButton();
+
     }
 
     /*
-    * Recebe id de um TextView e uma string, instanciando um TextView e setando o texto.
-    * */
+     * Recebe id de um TextView e uma string, instanciando um TextView e setando o texto.
+     * */
     public void setTextTv(int idTextView, String text){
         TextView tv = findViewById(idTextView);
         tv.setText(text);
     }
 
     /*
-    * Chamado no onClick da setinha na parte superior da interface de detalhes de caso
-    * fazendo com que apenas simule o clique no botão de voltar
-    * */
+     * Chamado no onClick da setinha na parte superior da interface de detalhes de caso
+     * fazendo com que apenas simule o clique no botão de voltar
+     * */
     public void voltar(View view){
         onBackPressed();
     }
 
     /*
-    * Abre uma lista de aplicativos para mandar um email com o propósito de avisar a ong
-    * que a pessoa quer ajudar no caso.
-    * */
+     * Abre uma lista de aplicativos para mandar um email com o propósito de avisar a ong
+     * que a pessoa quer ajudar no caso.
+     * */
     public void email(View view){
 
         String msg = getMsgParaOng();
@@ -137,9 +156,9 @@ public class DetalhesCasoActivity extends AppCompatActivity {
     }
 
     /*
-    * Abre o whatsapp ja na conversa com o número da ong, mandando uma mensagem informando
-    * o interesse no caso.
-    * */
+     * Abre o whatsapp ja na conversa com o número da ong, mandando uma mensagem informando
+     * o interesse no caso.
+     * */
     public void whatsapp(View view){
 
         String msg = getMsgParaOng();
@@ -155,16 +174,16 @@ public class DetalhesCasoActivity extends AppCompatActivity {
     }
 
     /*
-    * Método que define a mensagem que será enviada no email ou whatsapp
-    * */
+     * Método que define a mensagem que será enviada no email ou whatsapp
+     * */
     public String getMsgParaOng(){
         return getMsgHoras() + " " + caso.getOng().getNome() + ", Gostaria de ajudar no caso " +
                 caso.getTitulo() + ", com o valor de " + String.format("R$ %.2f", caso.getValor());
     }
 
     /*
-    * Coleta a hora atual e retorna uma mensagem de saudação
-    * */
+     * Coleta a hora atual e retorna uma mensagem de saudação
+     * */
     public String getMsgHoras(){
 
         SimpleDateFormat dateFormat_hora = new SimpleDateFormat("HH");

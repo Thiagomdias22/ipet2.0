@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 import com.example.ipet.R;
 import com.example.ipet.entities.Caso;
 import com.example.ipet.entities.Ong;
-import com.example.ipet.utils.GeralUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +26,7 @@ public class DetalhesCasoActivity extends AppCompatActivity {
     Caso caso;
     Button btEmail, btWhatsapp;
     ImageView ivLogoAnimal, ivIconAnimal;
+    TextView tvLocalizacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class DetalhesCasoActivity extends AppCompatActivity {
         btWhatsapp = findViewById(R.id.btWhatsappOngCase);
         ivLogoAnimal = findViewById(R.id.ivLogoAnimal);
         ivIconAnimal = findViewById(R.id.ivIconAnimal);
+        tvLocalizacao = findViewById(R.id.tvLocalizacao);
 
         setarInformacoes();
     }
@@ -52,7 +54,17 @@ public class DetalhesCasoActivity extends AppCompatActivity {
 
         setTextTv(R.id.tvNomeAnimal, caso.getNomeAnimal()); //Nome animal
         setTextTv(R.id.tvRaca, caso.getEspecie()); //Espécie animal
-        setTextTv(R.id.tvLocalizacao, ong.getCidade() + '/' + ong.getUf()); //City/Uf ong
+
+        String localizacao = ong.getCidade() + '/' + ong.getUf();
+        setTextTv(R.id.tvLocalizacao, localizacao); //City/Uf ong
+
+        //Mudanças no tamanho da fonte de acordo com o tamanho da string
+        if(localizacao.length() > 15){
+            tvLocalizacao.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        }
+        if(localizacao.length() > 25){
+            tvLocalizacao.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        }
 
         setTextTv(R.id.tvOngData, ong.getNome()); //Nome ong
         setTextTv(R.id.tvTitleData, caso.getTitulo()); //Nome caso
@@ -66,12 +78,14 @@ public class DetalhesCasoActivity extends AppCompatActivity {
         main3.getLayoutParams().height = main3.getMeasuredHeight() + 80;
     }
 
+    //Retorna 10% da largura do celular
     public int sizeIcon(){
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return (int) (displayMetrics.heightPixels*0.1);
     }
 
+    //Retorna 38% da altura do celular
     public int sizeButton(){
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -113,13 +127,12 @@ public class DetalhesCasoActivity extends AppCompatActivity {
         GradientDrawable gd = new GradientDrawable();
         gd.setColor(color);
         gd.setCornerRadius(35);
-
         btEmail.setBackground(gd);
         btWhatsapp.setBackground(gd);
 
+        //Ajustando a largura dos botões
         btEmail.getLayoutParams().width = sizeButton();
         btWhatsapp.getLayoutParams().width = sizeButton();
-
     }
 
     /*

@@ -55,16 +55,19 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
 
     @Override
     public int getItemCount() {
-        return casosOng != null ? casosOng.size() : 0;
+        return casosOng != null ? casosOng.size()+1 : 0;
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(final  RvTodosCasosOngAdapter.CasoViewHolder holder, final int position) {
+    public void onBindViewHolder(final  RvTodosCasosOngAdapter.CasoViewHolder holder, int position) {
 
         if(position != 0) {
 
-            Caso caso = casosOng.get(position);
+            //Subtrai 1 posição pois a primeira é apenas outro layout com avisos
+            final int p = position - 1;
+
+            Caso caso = casosOng.get(p);
 
             holder.tvOng.setText(caso.getOng().getNome());
             holder.tvTitulo.setText(caso.getTitulo());
@@ -75,7 +78,7 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
             holder.tvMaisDetalhes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onClickListener.onClickDetails(position);
+                    onClickListener.onClickDetails(p);
                 }
             });
         }

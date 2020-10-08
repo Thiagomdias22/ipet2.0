@@ -125,7 +125,7 @@
             android:layout_gravity="center">
 
             <Spinner
-                android:id="@+id/spUf"
+                android:id="@+id/spFilterUf"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:padding="5dp"
@@ -134,7 +134,7 @@
                 android:layout_gravity="left"/>
 
             <Spinner
-                android:id="@+id/spCidade"
+                android:id="@+id/spFilterCidade"
                 android:layout_width="150dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"

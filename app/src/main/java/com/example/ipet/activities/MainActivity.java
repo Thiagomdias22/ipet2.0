@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.ipet.R;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,17 +44,7 @@ public class MainActivity extends AppCompatActivity {
      * setará na textview de conexões desta tela.
      * */
     public void getQtdConxoes(){
-
-        FirebaseFirestore.getInstance().collection("conexoes")
-                .document("counter")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(final DocumentSnapshot documentSnapshot) {
-                        Integer qtdConexoes = documentSnapshot.get("quantidade", Integer.class);
-                        setTextQtdConexoes(qtdConexoes);
-                    }
-                });
+        setTextQtdConexoes(0);
     }
 
     /*

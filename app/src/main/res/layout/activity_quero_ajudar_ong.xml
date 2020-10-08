@@ -51,12 +51,12 @@
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvTotalCasos"
+                app:layout_constraintEnd_toStartOf="@+id/tvLimpar"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5" />
 
             <TextView
-                android:id="@+id/tvTotalCasos"
+                android:id="@+id/tvLimpar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:onClick="Filtro"
+            android:onClick="abrirFiltro"
             android:backgroundTint="#3CB7BC"
             android:src="@drawable/filter"
             app:fabCustomSize="65dp"

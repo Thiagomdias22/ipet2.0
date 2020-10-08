@@ -32,6 +32,10 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
         this.onClickListener = onClickListener;
     }
 
+    public void setCasosOng(List<Caso> casosOng) {
+        this.casosOng = casosOng;
+    }
+
     @Override
     public  RvTodosCasosOngAdapter.CasoViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view;
@@ -55,7 +59,7 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
 
     @Override
     public int getItemCount() {
-        return casosOng != null ? casosOng.size()+1 : 0;
+        return casosOng != null ? casosOng.size() + 1 : 0;
     }
 
     @SuppressLint("SetTextI18n")
@@ -81,6 +85,12 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
                     onClickListener.onClickDetails(p);
                 }
             });
+        } else {
+            holder.tvsubtitulo2.setText(
+                    casosOng.size() == 0
+                            ? "Não foi encontrado nenhum caso."
+                            : "Escolha um dos casos abaixo e salve o dia."
+            );
         }
     }
 
@@ -100,6 +110,7 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
         TextView tvValor;
         TextView tvAnimalData;
         TextView tvMaisDetalhes;
+        TextView tvsubtitulo2;
 
         public CasoViewHolder(View view, int viewType) {
             super(view);
@@ -110,6 +121,8 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
                 tvValor = view.findViewById(R.id.tvValorData);
                 tvAnimalData = view.findViewById(R.id.tvAnimalData);
                 tvMaisDetalhes = view.findViewById(R.id.tvMaisDetalhes);
+            }else{
+                tvsubtitulo2 = view.findViewById(R.id.tvsubtitulo2);
             }
         }
     }

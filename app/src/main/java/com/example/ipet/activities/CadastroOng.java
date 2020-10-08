@@ -43,12 +43,12 @@ public class CadastroOng extends AppCompatActivity {
         etSenha = findViewById(R.id.etSenha);
         etWhatsapp = findViewById(R.id.etWhatsapp);
 
-        spUf = findViewById(R.id.spUf);
-        spCidade = findViewById(R.id.spCidade);
+        spUf = findViewById(R.id.spFilterUf);
+        spCidade = findViewById(R.id.spFilterCidade);
 
         SpinnerUtils.confSpinnersUfCity(getApplicationContext(),
                 spUf, "UF",
-                spCidade, "Cidade");
+                spCidade, "Cidade", -1, -1);
 
         voltar = findViewById(R.id.voltar);
 
@@ -66,8 +66,8 @@ public class CadastroOng extends AppCompatActivity {
         String email = etEmail.getText().toString();
         String senha = etSenha.getText().toString();
         String whatsapp = verificaNumero(etWhatsapp.getText().toString());
-        String uf = getDataOfSp(R.id.spUf);
-        String cidade = getDataOfSp(R.id.spCidade);
+        String uf = getDataOfSp(R.id.spFilterUf);
+        String cidade = getDataOfSp(R.id.spFilterCidade);
 
         Ong ong = new Ong(nome, email, whatsapp, uf, cidade);
 
@@ -145,6 +145,9 @@ public class CadastroOng extends AppCompatActivity {
         return sp.getSelectedItem().toString();
     }
 
+    /*
+    * Simula a ação de apertar para voltar
+    * */
     public void voltar(View view){
         onBackPressed();
     }

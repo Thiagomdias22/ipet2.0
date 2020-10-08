@@ -11,7 +11,6 @@ import com.example.ipet.apiufcity.DadosApi;
 import com.example.ipet.R;
 import com.example.ipet.confspinner.ConfigureSpinner;
 import com.example.ipet.confspinner.NothingSelectedSpinnerAdapter;
-import com.example.ipet.utils.GeralUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,8 +20,10 @@ public class SpinnerUtils {
     /*
      * Método para inicializar, inserir dados e configurar os spinners de UF e Cidade.
      * */
-    public static void confSpinnersUfCity(final Context context, final Spinner spinnerUF, String titleSpUf,
-                                    final Spinner spinnerCity, final String titleSpCity) {
+    public static void confSpinnersUfCity(final Context context, final Spinner spinnerUF,
+                                          String titleSpUf, final Spinner spinnerCity,
+                                          final String titleSpCity, Integer preIndexUf,
+                                          final Integer preIndexCity) {
 
         final String urlStatic = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/";
 
@@ -36,9 +37,18 @@ public class SpinnerUtils {
                 new ConfigureSpinner.Action() { //Define a ação ao selecionar um item no spinner UF
                     @Override
                     public void onSelect(String itemSelected) {
-                        setDataSpCity(context, spinnerCity, titleSpCity, urlStatic, itemSelected);
+                        setDataSpCity(context, spinnerCity, titleSpCity, urlStatic, itemSelected,
+                                preIndexCity);
                     }
-                }
+
+                    @Override
+                    public void onLoaded() {
+                        if(preIndexCity != -1){
+                            setDataSpCity(context, spinnerCity, titleSpCity, urlStatic,
+                                    spinnerUF.getSelectedItem().toString(), preIndexCity);
+                        }
+                    }
+                }, preIndexUf
         ).runConf();
     }
 
@@ -54,7 +64,7 @@ public class SpinnerUtils {
         //se for o spinner de cidade, será necessáriod deixa-lo ativado
         //para que o evento de click seja possível, a fim de avisar o usuário
         //que deve-se selecionar primeiro a UF
-        if(spinner.getId() == R.id.spCidade){
+        if(spinner.getId() == R.id.spFilterCidade){
 
             spinner.setEnabled(true);
             spinner.setOnTouchListener(new View.OnTouchListener() {
@@ -77,7 +87,7 @@ public class SpinnerUtils {
      * Irá setar os dados no style_spinner com ajuda do método runConf da classe ConfigureSpinner
      * */
     private static void setDataSpCity(Context context, Spinner spinnerCity, String titleSpCity,
-                                      String urlStatic, String itemSelected) {
+                                      String urlStatic, String itemSelected, Integer preIndexCity) {
 
         //remove o aviso que aparecia alertando o usuário a escolher o UF primeiro.
         spinnerCity.setOnTouchListener(null);
@@ -90,7 +100,12 @@ public class SpinnerUtils {
                     public void onSelect(String itemSelected) {//Define a ação ao selecionar um item no spinner UF
 
                     }
-                }
+
+                    @Override
+                    public void onLoaded() {
+
+                    }
+                }, preIndexCity
         ).runConf();
     }
 

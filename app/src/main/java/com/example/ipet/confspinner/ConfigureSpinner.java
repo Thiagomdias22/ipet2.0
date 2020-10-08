@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import com.example.ipet.R;
 import com.example.ipet.apiufcity.ConsumerData;
 import com.example.ipet.apiufcity.DadosApi;
 import com.example.ipet.utils.SpinnerUtils;
@@ -16,6 +17,7 @@ public class ConfigureSpinner {
 
     public interface Action {
         void onSelect(String itemSelected);
+        void onLoaded();
     }
 
     protected Spinner spinner;
@@ -25,9 +27,10 @@ public class ConfigureSpinner {
     protected Boolean isChecked;
     protected Boolean isSorted;
     protected String title;
+    protected Integer preIndex;
 
-    public ConfigureSpinner(final Context context, Spinner spinner, String title,
-                            DadosApi dadosApi, Boolean isSorted, Action action) {
+    public ConfigureSpinner(final Context context, Spinner spinner, String title, DadosApi dadosApi,
+                            Boolean isSorted, Action action, Integer preIndex) {
         this.spinner = spinner;
         this.dadosApi = dadosApi;
         this.action = action;
@@ -35,6 +38,7 @@ public class ConfigureSpinner {
         isChecked = false;
         this.isSorted = isSorted;
         this.title = title;
+        this.preIndex = preIndex;
     }
 
     /*
@@ -89,7 +93,12 @@ public class ConfigureSpinner {
 
                 SpinnerUtils.setDataSpinner(spinner, context, title, dados);
 
+                if(preIndex != -1){
+                    spinner.setSelection(preIndex);
+                }
+
                 spinner.setEnabled(true); //ativa quando os dados chegar
+                action.onLoaded(); //avisa que os dados foram inseridos
             }
         }).getData();
 

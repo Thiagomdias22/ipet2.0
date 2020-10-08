@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FAFAFA"
     android:orientation="vertical"
-    tools:context=".activities.QueroAjudarOng">
+    tools:context=".activities.Filter">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -41,11 +41,12 @@
                 app:srcCompat="@drawable/filtros" />
 
             <TextView
-                android:id="@+id/tvTotalCasos"
+                android:id="@+id/tvLimpar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="LIMPAR"
+                android:onClick="limpar"
                 android:textColor="#000"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -77,7 +78,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ivEspCao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="124dp"
@@ -85,10 +86,11 @@
             app:layout_constraintHorizontal_bias="0.083"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icone_dog" />
+            android:onClick="selectEspecie"
+            android:background="@drawable/icone_dog1" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/ivEspGato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="124dp"
@@ -96,17 +98,19 @@
             app:layout_constraintHorizontal_bias="0.281"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icone_cat" />
+            android:onClick="selectEspecie"
+            android:background="@drawable/icone_cat1" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/ivEspCoelho"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="124dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icone_bunny" />
+            android:onClick="selectEspecie"
+            android:background="@drawable/icone_bunny1" />
 
         <TextView
             android:id="@+id/textView5"
@@ -123,7 +127,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/etValorMin"
             android:layout_width="162dp"
             android:layout_height="42dp"
             android:background="@drawable/style_edit"
@@ -149,13 +153,13 @@
             android:layout_marginTop="268dp"
             android:text="-"
             android:textSize="40dp"
-            app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"
+            app:layout_constraintEnd_toStartOf="@+id/etValorMax"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+            app:layout_constraintStart_toEndOf="@+id/etValorMin"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/etValorMax"
             android:layout_width="162dp"
             android:layout_height="42dp"
             android:background="@drawable/style_edit"
@@ -186,7 +190,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/etValorMin"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -198,7 +202,7 @@
         android:layout_gravity="center">
 
         <Spinner
-            android:id="@+id/spUf"
+            android:id="@+id/spFilterUf"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_gravity="left"
@@ -207,7 +211,7 @@
             android:padding="5dp" />
 
         <Spinner
-            android:id="@+id/spCidade"
+            android:id="@+id/spFilterCidade"
             android:layout_width="150dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -227,6 +231,7 @@
         android:layout_marginRight="40dp"
         android:background="@drawable/style_button"
         android:textColor="#fff"
+        android:onClick="filtrar"
         android:textSize="18dp"
         android:text="Filtrar" />
 </LinearLayout>

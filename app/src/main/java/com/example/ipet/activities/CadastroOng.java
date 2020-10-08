@@ -43,8 +43,8 @@ public class CadastroOng extends AppCompatActivity {
         etSenha = findViewById(R.id.etSenha);
         etWhatsapp = findViewById(R.id.etWhatsapp);
 
-        spUf = findViewById(R.id.spFilterUf);
-        spCidade = findViewById(R.id.spFilterCidade);
+        spUf = findViewById(R.id.spUf);
+        spCidade = findViewById(R.id.spCidade);
 
         SpinnerUtils.confSpinnersUfCity(getApplicationContext(),
                 spUf, "UF",
@@ -66,8 +66,8 @@ public class CadastroOng extends AppCompatActivity {
         String email = etEmail.getText().toString();
         String senha = etSenha.getText().toString();
         String whatsapp = verificaNumero(etWhatsapp.getText().toString());
-        String uf = getDataOfSp(R.id.spFilterUf);
-        String cidade = getDataOfSp(R.id.spFilterCidade);
+        String uf = getDataOfSp(R.id.spUf);
+        String cidade = getDataOfSp(R.id.spCidade);
 
         Ong ong = new Ong(nome, email, whatsapp, uf, cidade);
 

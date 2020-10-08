@@ -54,7 +54,11 @@ public class QueroAjudarOng extends AppCompatActivity {
                     public void onClickDetails(int position) {
                         Intent intent = new Intent(getApplicationContext(),
                                 DetalhesCasoActivity.class);
-                        intent.putExtra("casoOng", (Parcelable) casosOngs.get(position));
+                        intent.putExtra("casoOng",
+                                dadosDoFiltro.isClear()
+                                ? (Parcelable) casosOngs.get(position)
+                                : (Parcelable) casosFiltrados.get(position)
+                        );
                         startActivity(intent);
                     }
          });

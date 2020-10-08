@@ -37,7 +37,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/voltar"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.99"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/filtros" />
 
             <TextView
@@ -61,19 +61,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#FAFAFA">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="32dp"
             android:text="Espécie"
             android:textColor="#716F89"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintHorizontal_bias="0.088"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,48 +82,52 @@
             android:id="@+id/ivEspCao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="124dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.083"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="96dp"
+            android:elevation="5dp"
+            android:background="@drawable/icone_dog1"
             android:onClick="selectEspecie"
-            android:background="@drawable/icone_dog1" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.082"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivEspGato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="124dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.281"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="96dp"
+            android:background="@drawable/icone_cat1"
+            android:elevation="5dp"
             android:onClick="selectEspecie"
-            android:background="@drawable/icone_cat1" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.302"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivEspCoelho"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="124dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="96dp"
+            android:background="@drawable/icone_bunny1"
+            android:elevation="5dp"
             android:onClick="selectEspecie"
-            android:background="@drawable/icone_bunny1" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.541"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="196dp"
+            android:layout_marginTop="188dp"
             android:text="Faixa de valor"
             android:textColor="#716F89"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.049"
+            app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,6 +137,7 @@
             android:layout_height="42dp"
             android:background="@drawable/style_edit"
             android:ems="10"
+            android:elevation="5dp"
             android:hint="Minimo"
             android:inputType="numberDecimal"
             android:padding="5dp"
@@ -140,18 +146,19 @@
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.064"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.307" />
+            app:layout_constraintVertical_bias="0.23" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="268dp"
+            android:layout_marginTop="236dp"
             android:text="-"
+            android:elevation="5dp"
             android:textSize="40dp"
             app:layout_constraintEnd_toStartOf="@+id/etValorMax"
             app:layout_constraintHorizontal_bias="0.0"
@@ -165,6 +172,7 @@
             android:background="@drawable/style_edit"
             android:ems="10"
             android:hint="Máximo"
+            android:elevation="5dp"
             android:inputType="numberDecimal"
             android:padding="5dp"
             android:textAlignment="center"
@@ -175,29 +183,32 @@
             app:layout_constraintHorizontal_bias="0.935"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.705" />
+            app:layout_constraintVertical_bias="0.77" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="40dp"
             android:text="Localização"
             android:textColor="#716F89"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintHorizontal_bias="0.12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etValorMin"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.694" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:paddingBottom="20dp"
         android:orientation="horizontal"
         android:layout_gravity="center">
 
@@ -206,6 +217,9 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="3dp"
             android:layout_weight="1"
             android:background="@drawable/style_spinner"
             android:padding="5dp" />
@@ -215,7 +229,9 @@
             android:layout_width="150dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
+            android:elevation="3dp"
             android:layout_weight="1"
             android:background="@drawable/style_spinner"
             android:padding="5dp" />
@@ -226,12 +242,13 @@
         android:id="@+id/bCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/style_button"
-        android:textColor="#fff"
         android:onClick="filtrar"
-        android:textSize="18dp"
-        android:text="Filtrar" />
+        android:text="Filtrar"
+        android:textColor="#fff"
+        android:textSize="18dp" />
+
 </LinearLayout>

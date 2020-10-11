@@ -23,6 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static com.example.ipet.utils.GeralUtils.isValidInput;
+import static com.example.ipet.utils.GeralUtils.toast;
+
 public class CriarCasoActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
@@ -66,11 +69,38 @@ public class CriarCasoActivity extends AppCompatActivity {
     public void criarUmCaso(View view){
 
         String id = getRandomId();
+
         String titulo = etTituloCaso.getText().toString();
+        if(!isValidInput(titulo, "text")){
+            etTituloCaso.setError("Insira o título do caso");
+            return;
+        }
+
         String descricao = etDescricaoCaso.getText().toString();
+        if(!isValidInput(descricao, "text")){
+            etDescricaoCaso.setError("Insira a descrição do caso");
+            return;
+        }
+
         String nomeAnimal = etAnimalCaso.getText().toString();
-        String especie = spEspecieCaso.getSelectedItem().toString();
-        Double valor = Double.parseDouble(etValorCaso.getText().toString());
+        if(!isValidInput(nomeAnimal, "text")){
+            etAnimalCaso.setError("Insira o nome do animal");
+            return;
+        }
+
+        String especie = getDataOfSp(R.id.spEspecieCaso);
+        if(!isValidInput(especie, "text")){
+            ((TextView) spEspecieCaso.getSelectedView()).setError("");
+            toast(getApplicationContext(), "Informe a espécie do animal");
+            return;
+        }
+
+        String valorString = etValorCaso.getText().toString();
+        if(!isValidInput(valorString, "double")){
+            etValorCaso.setError("Insira um valor válido");
+            return;
+        }
+        Double valor = Double.parseDouble(valorString);
 
         Map<String, Object> caso = new HashMap<>();
         caso.put("id", id);
@@ -145,7 +175,19 @@ public class CriarCasoActivity extends AppCompatActivity {
         return str.toString();
     }
 
+    /*
+    * Simula o click no botão voltar
+    * */
     public void voltar(View view){
         onBackPressed();
+    }
+
+    /*
+     * Método que recebe o id de um Spinner e pega o conteudo selecionado
+     * */
+    private String getDataOfSp(int idSpinner){
+        Spinner sp = findViewById(idSpinner);
+        Object selected = sp.getSelectedItem();
+        return selected == null ? "" : selected.toString();
     }
 }

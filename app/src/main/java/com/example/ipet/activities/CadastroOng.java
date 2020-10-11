@@ -21,6 +21,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import static com.example.ipet.utils.GeralUtils.isValidInput;
+import static com.example.ipet.utils.GeralUtils.toast;
+
 public class CadastroOng extends AppCompatActivity {
 
     FirebaseFirestore db;
@@ -63,11 +66,43 @@ public class CadastroOng extends AppCompatActivity {
     public void cadastrar(View view){
 
         String nome = etNome.getText().toString();
+        if(!isValidInput(nome, "text")){
+            etNome.setError("Insira o nome da Ong");
+            return;
+        }
+
         String email = etEmail.getText().toString();
+        if(!isValidInput(email, "email")){
+            etEmail.setError("Insira um email válido");
+            return;
+        }
+
         String senha = etSenha.getText().toString();
-        String whatsapp = verificaNumero(etWhatsapp.getText().toString());
+        if(!isValidInput(senha, "text")){
+            etSenha.setError("Insira uma senha");
+            return;
+        }
+
+        String whatsapp = etWhatsapp.getText().toString();
+        if(!isValidInput(whatsapp, "number") || whatsapp.length() < 8){
+            etWhatsapp.setError("Insira um telefone válido");
+            return;
+        }
+        whatsapp = verificaNumero(whatsapp);
+
         String uf = getDataOfSp(R.id.spUf);
+        if(!isValidInput(uf, "text")){
+            ((TextView) spUf.getSelectedView()).setError("");
+            toast(getApplicationContext(), "Informe UF");
+            return;
+        }
+
         String cidade = getDataOfSp(R.id.spCidade);
+        if(!isValidInput(cidade, "text")){
+            ((TextView) spCidade.getSelectedView()).setError("");
+            toast(getApplicationContext(), "Informe Cidade");
+            return;
+        }
 
         Ong ong = new Ong(nome, email, whatsapp, uf, cidade);
 
@@ -82,7 +117,7 @@ public class CadastroOng extends AppCompatActivity {
     public String verificaNumero(String num){
         String dddPais = "55";
         String doisPrimeirosDigitos = num.substring(0, 2);
-        return !doisPrimeirosDigitos.equals(dddPais) ? dddPais + num : num;
+        return !doisPrimeirosDigitos.equals(dddPais) && num.length() <= 9 ? dddPais + num : num;
     }
 
     /*
@@ -142,7 +177,8 @@ public class CadastroOng extends AppCompatActivity {
      * */
     private String getDataOfSp(int idSpinner){
         Spinner sp = findViewById(idSpinner);
-        return sp.getSelectedItem().toString();
+        Object selected = sp.getSelectedItem();
+        return selected == null ? "" : selected.toString();
     }
 
     /*

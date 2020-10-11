@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import static android.util.Patterns.EMAIL_ADDRESS;
+import static com.example.ipet.utils.GeralUtils.validateEmailFormat;
 
 public class SouUmaOngActivity extends AppCompatActivity {
 
@@ -161,10 +161,4 @@ public class SouUmaOngActivity extends AppCompatActivity {
         onBackPressed();
     }
 
-    /*
-    * Método utilizando uma lógica pronta para verificar se o email é válido ou não
-    * */
-    private boolean validateEmailFormat(final String email) {
-        return EMAIL_ADDRESS.matcher(email).matches();
-    }
 }

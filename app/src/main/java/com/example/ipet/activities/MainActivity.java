@@ -3,8 +3,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.ipet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,12 +19,50 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
+    ImageView dog,titulo;
+    Button botao1,botao2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        titulo= findViewById(R.id.ivTitulo);
+        botao1= findViewById(R.id.bSouUmaOng);
+        botao2= findViewById(R.id.bQueroAjudarOng);
+
+        setarInformacoes();
         getQtdConexoes();
+    }
+
+    public int heightTela(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return (int) displayMetrics.heightPixels;
+    }
+
+    public void setarInformacoes() {
+        if(heightTela() < 1400){
+            int size = sizeIcon();
+            titulo.getLayoutParams().width = size;
+            setMargins(titulo,100, 30, 0, -100);
+            setMargins(botao1, 30,20,30,10);
+            setMargins(botao2, 30,5,30,10);
+        }
+    }
+    //seta tamanho do height de algum componente
+    public int sizeIcon(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return (int) (displayMetrics.heightPixels*0.30);
+    }
+
+    public static void setMargins (View v, int l, int t, int r, int b) {
+        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            p.setMargins(l, t, r, b);
+            v.requestLayout();
+        }
     }
 
     /*

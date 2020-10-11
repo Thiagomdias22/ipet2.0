@@ -53,9 +53,11 @@ public class Filter extends AppCompatActivity {
 
     public void setarInformacoes() {
         if(heightTela() < 1400){
-            setMargins(bCadastrar,0, -40, 0, 0);
+            setMargins(bCadastrar,0, -30, 0, 0);
             setMargins(etValorMax, 285, 0, 0, 0);
             setMargins(etValorMin, 0, 0, 285, 0);
+            setMargins(spFilterUf, 45, 0, 10, 10);
+            setMargins(spFilterCidade, 10, 4, 5, 10);
         }
     }
 

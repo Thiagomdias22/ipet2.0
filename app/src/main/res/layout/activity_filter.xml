@@ -156,18 +156,20 @@
             app:layout_constraintVertical_bias="0.23" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvSeparacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="234dp"
             android:layout_marginEnd="4dp"
             android:elevation="5dp"
             android:text="-"
             android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/etValorMax"
+            app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toEndOf="@+id/etValorMin"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.759" />
 
         <EditText
             android:id="@+id/etValorMax"

@@ -3,11 +3,16 @@ package com.example.ipet.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.ipet.R;
 import com.example.ipet.utils.GeralUtils;
@@ -25,6 +30,7 @@ public class SouUmaOngActivity extends AppCompatActivity {
     EditText etEmail, etSenha;
     Button bLogin;
     TextView tvNaoTenhoCadastro, tvEsqueciSenha, voltar;
+    ImageView ivTitulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,9 @@ public class SouUmaOngActivity extends AppCompatActivity {
         tvNaoTenhoCadastro = findViewById(R.id.tvNaoTenhoCadastro);
         tvEsqueciSenha = findViewById(R.id.tvEsqueciSenha);
         voltar = findViewById(R.id.voltar);
+        ivTitulo = findViewById(R.id.ivtitulo1);
+
+        setarInformacoes();
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -75,6 +84,34 @@ public class SouUmaOngActivity extends AppCompatActivity {
         }
 
         realizarLogin(email, senha);
+    }
+
+    public int heightTela(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return (int) displayMetrics.heightPixels;
+    }
+
+    public void setarInformacoes() {
+        if(heightTela() < 1400){
+            int size = sizeIcon();
+            ivTitulo.getLayoutParams().width = size;
+            setMargins(ivTitulo,0, -50, 0, 0);
+        }
+    }
+    //seta tamanho do height de algum componente
+    public int sizeIcon(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return (int) (displayMetrics.heightPixels*0.34);
+    }
+
+    public static void setMargins (View v, int l, int t, int r, int b) {
+        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            p.setMargins(l, t, r, b);
+            v.requestLayout();
+        }
     }
 
     /*

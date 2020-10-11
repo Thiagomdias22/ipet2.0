@@ -3,10 +3,14 @@ package com.example.ipet.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.ipet.R;
 import com.example.ipet.entities.DadosFiltro;
@@ -26,6 +30,8 @@ public class Filter extends AppCompatActivity {
     ImageView ivEspCao, ivEspGato, ivEspCoelho;
     EditText etValorMin, etValorMax;
     Spinner spFilterUf, spFilterCidade;
+    Button bCadastrar;
+    TextView tvSeparar;
     HashMap<Integer, Boolean> especiesEscolhidas;
 
     @Override
@@ -35,6 +41,30 @@ public class Filter extends AppCompatActivity {
 
         initViews();
         initValues();
+
+        setarInformacoes();
+    }
+
+    public int heightTela(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return (int) displayMetrics.heightPixels;
+    }
+
+    public void setarInformacoes() {
+        if(heightTela() < 1400){
+            setMargins(bCadastrar,0, -40, 0, 0);
+            setMargins(etValorMax, 285, 0, 0, 0);
+            setMargins(etValorMin, 0, 0, 285, 0);
+        }
+    }
+
+    public static void setMargins (View v, int l, int t, int r, int b) {
+        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            p.setMargins(l, t, r, b);
+            v.requestLayout();
+        }
     }
 
     /*
@@ -50,6 +80,9 @@ public class Filter extends AppCompatActivity {
 
         spFilterUf = findViewById(R.id.spFilterUf);
         spFilterCidade = findViewById(R.id.spFilterCidade);
+
+        bCadastrar = findViewById(R.id.bCadastrar);
+        tvSeparar = findViewById(R.id.tvSeparacao);
     }
 
     /*

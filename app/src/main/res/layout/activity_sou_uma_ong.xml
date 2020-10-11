@@ -25,7 +25,7 @@
         </TextView>
 
         <ImageView
-            android:id="@+id/ivtiutlo"
+            android:id="@+id/ivtitulo1"
             android:layout_width="204dp"
             android:layout_height="101dp"
             android:layout_gravity="center_horizontal"

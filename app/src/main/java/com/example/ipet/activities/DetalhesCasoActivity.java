@@ -1,5 +1,6 @@
 package com.example.ipet.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -8,6 +9,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +19,15 @@ import android.widget.TextView;
 import com.example.ipet.R;
 import com.example.ipet.entities.Caso;
 import com.example.ipet.entities.Ong;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DetalhesCasoActivity extends AppCompatActivity {
 
@@ -41,6 +49,7 @@ public class DetalhesCasoActivity extends AppCompatActivity {
         tvLocalizacao = findViewById(R.id.tvLocalizacao);
 
         setarInformacoes();
+
     }
 
     /*
@@ -144,6 +153,33 @@ public class DetalhesCasoActivity extends AppCompatActivity {
     }
 
     /*
+     * Primeiramente é necessário fazer o carregamento das conexões que estão no bd,
+     * após isso é incrementado o contador qtd para atualizar o número de conexões feitas.
+     * */
+    public void setConexoes(){
+        FirebaseFirestore.getInstance()
+                .collection("conexoes")
+                .document("counter")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            Integer qtd = document.get("quantidade", Integer.class);
+                            qtd ++;
+                            Map<String, Object> qtdConexoes = new HashMap<>();
+                            qtdConexoes.put("quantidade", qtd);
+                            FirebaseFirestore.getInstance()
+                                    .collection("conexoes")
+                                    .document("counter")
+                                    .set(qtdConexoes);
+                        }
+                    }
+                });
+    }
+
+    /*
      * Chamado no onClick da setinha na parte superior da interface de detalhes de caso
      * fazendo com que apenas simule o clique no botão de voltar
      * */
@@ -166,6 +202,8 @@ public class DetalhesCasoActivity extends AppCompatActivity {
         EnviarEmail.putExtra(Intent.EXTRA_TEXT,msg);
         EnviarEmail.setType("text/plain");
         startActivity(Intent.createChooser(EnviarEmail, "Escolha o cliente de e-mail"));
+
+        setConexoes();
     }
 
     /*
@@ -183,7 +221,7 @@ public class DetalhesCasoActivity extends AppCompatActivity {
                 msg));
 
         startActivity(intent);
-
+        setConexoes();
     }
 
     /*

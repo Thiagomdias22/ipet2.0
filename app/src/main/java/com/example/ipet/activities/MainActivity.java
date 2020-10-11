@@ -1,13 +1,17 @@
 package com.example.ipet.activities;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
 import com.example.ipet.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getQtdConxoes();
+        getQtdConexoes();
     }
 
     /*
@@ -43,8 +47,39 @@ public class MainActivity extends AppCompatActivity {
      * atributo quantidade, que é onde esse valor está sendo guardado. Quando houver resposta,
      * setará na textview de conexões desta tela.
      * */
-    public void getQtdConxoes(){
-        setTextQtdConexoes(0);
+    public void getQtdConexoes(){
+        FirebaseFirestore.getInstance()
+                .collection("conexoes")
+                .document("counter")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            Integer qtd = document.get("quantidade", Integer.class);
+                            if (document.exists()) {
+                                Log.d("oi","DocumentSnapshot data: " + document.getData());
+                                setTextQtdConexoes(qtd);
+                            } else {
+                                Log.d("oi", "No such document");
+                                setTextQtdConexoes(0);
+                            }
+                        } else {
+                            Log.d("oi", "get failed with ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    /*
+     * Ciclo de Vida para atualizar as informações de conexões quando o usuario voltar
+     * a tela principal
+     * */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getQtdConexoes();
     }
 
     /*

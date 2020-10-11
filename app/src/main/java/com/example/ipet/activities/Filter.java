@@ -3,9 +3,7 @@ package com.example.ipet.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,6 +18,9 @@ import com.example.ipet.utils.SpinnerUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.example.ipet.utils.GeralUtils.heightTela;
+import static com.example.ipet.utils.GeralUtils.setMargins;
 
 public class Filter extends AppCompatActivity {
 
@@ -42,30 +43,19 @@ public class Filter extends AppCompatActivity {
         initViews();
         initValues();
 
-        setarInformacoes();
+        setarAjustesViews();
     }
 
-    public int heightTela(){
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return (int) displayMetrics.heightPixels;
-    }
-
-    public void setarInformacoes() {
-        if(heightTela() < 1400){
+    /*
+    * Realiza ajustes nas views para telas menores
+    * */
+    public void setarAjustesViews() {
+        if(heightTela(Filter.this) < 1400){
             setMargins(bCadastrar,0, -30, 0, 0);
             setMargins(etValorMax, 285, 0, 0, 0);
             setMargins(etValorMin, 0, 0, 285, 0);
             setMargins(spFilterUf, 45, 0, 10, 10);
             setMargins(spFilterCidade, 10, 4, 5, 10);
-        }
-    }
-
-    public static void setMargins (View v, int l, int t, int r, int b) {
-        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-            p.setMargins(l, t, r, b);
-            v.requestLayout();
         }
     }
 

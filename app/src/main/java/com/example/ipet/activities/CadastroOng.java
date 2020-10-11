@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import static com.example.ipet.utils.GeralUtils.heightTela;
 import static com.example.ipet.utils.GeralUtils.isValidInput;
+import static com.example.ipet.utils.GeralUtils.setMargins;
 import static com.example.ipet.utils.GeralUtils.toast;
 
 public class CadastroOng extends AppCompatActivity {
@@ -32,6 +35,7 @@ public class CadastroOng extends AppCompatActivity {
     TextView voltar;
     Spinner spUf, spCidade;
     Button bCadastrar;
+    ImageView ivCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,17 @@ public class CadastroOng extends AppCompatActivity {
         voltar = findViewById(R.id.voltar);
 
         bCadastrar = findViewById(R.id.bCadastrar);
+
+        ivCadastro = findViewById(R.id.ivCadastro);
+
+        setarInformacoes();
+    }
+
+    public void setarInformacoes() {
+        if(heightTela(CadastroOng.this) < 1400){
+            setMargins(ivCadastro,0, 80, 0, 0);
+            setMargins(bCadastrar,0, 40, 0, 0);
+        }
     }
 
     /*

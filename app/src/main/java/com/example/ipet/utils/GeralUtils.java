@@ -1,7 +1,11 @@
 package com.example.ipet.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -66,4 +70,16 @@ public class GeralUtils {
         return false;
     }
 
+    public static int heightTela(Activity activity){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+    public static void setMargins (View v, int l, int t, int r, int b) {
+        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            p.setMargins(l, t, r, b);
+            v.requestLayout();
+        }
+    }
 }

@@ -3,16 +3,12 @@ package com.example.ipet.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.ipet.R;
 import com.example.ipet.utils.GeralUtils;
@@ -22,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import static com.example.ipet.utils.GeralUtils.heightTela;
+import static com.example.ipet.utils.GeralUtils.setMargins;
 import static com.example.ipet.utils.GeralUtils.validateEmailFormat;
 
 public class SouUmaOngActivity extends AppCompatActivity {
@@ -86,31 +84,16 @@ public class SouUmaOngActivity extends AppCompatActivity {
         realizarLogin(email, senha);
     }
 
-    public int heightTela(){
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return (int) displayMetrics.heightPixels;
-    }
-
+    /*
+     * Realiza ajustes nas views para telas menores
+     * */
     public void setarInformacoes() {
-        if(heightTela() < 1400){
-            int size = sizeIcon();
-            ivTitulo.getLayoutParams().width = size;
-            setMargins(ivTitulo,0, -50, 0, 0);
-        }
-    }
-    //seta tamanho do height de algum componente
-    public int sizeIcon(){
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        return (int) (displayMetrics.heightPixels*0.34);
-    }
 
-    public static void setMargins (View v, int l, int t, int r, int b) {
-        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
-            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-            p.setMargins(l, t, r, b);
-            v.requestLayout();
+        int heighScreen = heightTela(SouUmaOngActivity.this);
+
+        if(heighScreen < 1400){
+            ivTitulo.getLayoutParams().width = (int)(heighScreen*0.34);
+            setMargins(ivTitulo,0, -50, 0, 0);
         }
     }
 

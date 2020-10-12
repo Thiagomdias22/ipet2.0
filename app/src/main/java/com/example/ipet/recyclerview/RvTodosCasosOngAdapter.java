@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ipet.R;
 import com.example.ipet.entities.Caso;
+import com.example.ipet.entities.Ong;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +73,10 @@ public class RvTodosCasosOngAdapter extends RecyclerView.Adapter<RvTodosCasosOng
             final int p = position - 1;
 
             Caso caso = casosOng.get(p);
+            if(caso == null) return; //Evitando bugs
+
+            Ong ong = caso.getOng();
+            if(ong == null) return; //Evitando bugs
 
             holder.tvOng.setText(caso.getOng().getNome());
             holder.tvTitulo.setText(caso.getTitulo());

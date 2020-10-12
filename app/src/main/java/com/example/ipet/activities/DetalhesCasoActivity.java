@@ -215,7 +215,7 @@ public class DetalhesCasoActivity extends AppCompatActivity {
         String msg = getMsgParaOng();
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=" +
+        intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=55" +
                 caso.getOng().getWhatsapp() +
                 "&text=" +
                 msg));

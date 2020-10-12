@@ -103,7 +103,6 @@ public class CadastroOng extends AppCompatActivity {
             etWhatsapp.setError("Insira um telefone válido");
             return;
         }
-        whatsapp = verificaNumero(whatsapp);
 
         String uf = getDataOfSp(R.id.spUf);
         if(!isValidInput(uf, "text")){
@@ -124,15 +123,6 @@ public class CadastroOng extends AppCompatActivity {
         setEnableViews(false); //desativa as views enquanto o cadastro esta sendo realizado
 
         criarUserOng(ong, senha);
-    }
-
-    /*
-    * Validação de número com ou sem ddd do pais
-    * */
-    public String verificaNumero(String num){
-        String dddPais = "55";
-        String doisPrimeirosDigitos = num.substring(0, 2);
-        return !doisPrimeirosDigitos.equals(dddPais) && num.length() <= 9 ? dddPais + num : num;
     }
 
     /*
@@ -164,8 +154,16 @@ public class CadastroOng extends AppCompatActivity {
                             salvarDadosOng(ong);
                         } else {
                             setEnableViews(true); //ativa caso algo deu errado
-                            Toast.makeText(getApplicationContext(), "Erro no cadastro.",
-                                    Toast.LENGTH_LONG).show();
+
+                            String msgErro = "Erro no cadastro.";
+
+                            Exception e = task.getException();
+
+                            if(e != null){
+                                msgErro += " (" + e.getMessage() + ")";
+                            }
+
+                            Toast.makeText(getApplicationContext(), msgErro,Toast.LENGTH_LONG).show();
                         }
                     }
                 });

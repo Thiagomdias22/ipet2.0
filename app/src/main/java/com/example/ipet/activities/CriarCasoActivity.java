@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import static com.example.ipet.utils.GeralUtils.isValidInput;
 import static com.example.ipet.utils.GeralUtils.toast;
@@ -68,7 +69,7 @@ public class CriarCasoActivity extends AppCompatActivity {
     * */
     public void criarUmCaso(View view){
 
-        String id = getRandomId();
+        String id = UUID.randomUUID().toString();
 
         String titulo = etTituloCaso.getText().toString();
         if(!isValidInput(titulo, "text")){
@@ -145,34 +146,6 @@ public class CriarCasoActivity extends AppCompatActivity {
         spEspecieCaso.setEnabled(op);
         btCriarCaso.setEnabled(op);
         tvVoltar.setEnabled(op);
-    }
-
-    /*
-     * Cria um id único usando conjunto de letras aleatória, junto com o sistema do tempo
-     * multiplicado por um número randomico, por fim, adiciona mais letras aleatórias
-     * */
-    public String getRandomId(){
-        return  getLetrasRand() +
-                System.currentTimeMillis() * new Random().nextInt(1000) +
-                getLetrasRand();
-    }
-
-    /*
-    * Gera um conjunto de 4 letras armazendas em uma string.
-    * As letras podem ser de 'a' até 'z'.
-    * */
-    public String getLetrasRand(){
-
-        StringBuilder str = new StringBuilder();
-
-        int min = 97; //a
-        int max = 122; //z
-
-        for(int i=0; i<4; i++){
-            str.append((char) (new Random().nextInt((max - min) + 1) + min));
-        }
-
-        return str.toString();
     }
 
     /*

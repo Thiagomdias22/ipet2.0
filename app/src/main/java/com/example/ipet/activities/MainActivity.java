@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.ipet.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 import static com.example.ipet.utils.GeralUtils.heightTela;
 import static com.example.ipet.utils.GeralUtils.setMargins;
@@ -85,15 +88,21 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             Integer qtd = document.get("quantidade", Integer.class);
-                            if (document.exists()) {
-//                                Log.d("oi","DocumentSnapshot data: " + document.getData());
+
+                            if (document.exists()) { //Se exisitir, le o valor e seta no textview
                                 setTextQtdConexoes(qtd);
-                            } else {
-//                                Log.d("oi", "No such document");
+                            } else { //Caso não exista, irá criar com valor 0
+
+                                HashMap<String, Integer> dataQuantidade = new HashMap<>();
+                                dataQuantidade.put("quantidade", 0);
+
+                                FirebaseFirestore.getInstance()
+                                        .collection("conexoes")
+                                        .document("counter")
+                                        .set(dataQuantidade);
+
                                 setTextQtdConexoes(0);
                             }
-                        } else {
-//                            Log.d("oi", "get failed with ", task.getException());
                         }
                     }
                 });

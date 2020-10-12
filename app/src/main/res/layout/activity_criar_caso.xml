@@ -84,12 +84,12 @@
                 android:layout_marginRight="20dp"
                 android:ems="10"
                 android:maxLength="200"
+                android:inputType="textCapSentences|textAutoCorrect|textMultiLine"
                 android:textColorHint="#716F89"
                 android:textSize="20dp"
                 android:background="@drawable/style_edit"
                 android:padding="5dp"
                 android:gravity="left|top"
-                android:inputType="textCapSentences|textAutoCorrect"
                 android:hint="Descricao" />
 
             <EditText

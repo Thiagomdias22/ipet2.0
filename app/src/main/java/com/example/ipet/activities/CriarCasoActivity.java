@@ -3,6 +3,7 @@ package com.example.ipet.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +22,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 import static com.example.ipet.utils.GeralUtils.isValidInput;
@@ -40,6 +40,7 @@ public class CriarCasoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_caso);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         db = FirebaseFirestore.getInstance();
         ong = getIntent().getParcelableExtra("ong");

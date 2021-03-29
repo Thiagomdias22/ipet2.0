@@ -7,7 +7,6 @@
 ![GitHub forks](https://img.shields.io/github/forks/Thiagomdias22/ipet2.0?style=for-the-badge)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/Thiagomdias22/ipet2.0?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/Thiagomdias22/ipet2.0?style=for-the-badge)
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Thiagomdias22&repo=ipet2.0)](https://github.com/Thiagomdias22/ipet2.0)
 
 <img src="https://github.com/Thiagomdias22/ipet2.0/blob/master/screenshots/logogrande.png" width="400px;" alt="Logo iPet">
 

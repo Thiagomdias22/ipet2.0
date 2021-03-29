@@ -25,30 +25,38 @@ Para instalar o iPet, siga estas etapas:
 
 Caso preferir, disponibilizamos este projeto na playstore -> [iPet](https://play.google.com/store/apps/details?id=com.bdtgo.ipet)
 
+## 🔋 Stacks Utilizadas
+
+1. Java
+2. Firebase
+3. Android Studio
+
 ## 📷 Screenshots
 
 <table>
   <tr>
     <td>Tela Inicial</td>
     <td>Login</td>
-    <td>Cadastro</td>
+    <td>Cadastro ONG</td>
     <td>Administração da ONG</td>
   </tr>
   <tr>
     <td><img src="/screenshots/1.jpg" width="200px;" alt="Tela Inicial"/></td>
     <td><img src="/screenshots/2.jpg" width="200px;" alt="Tela de Login"/></td>
-    <td><img src="/screenshots/3.jpg" width="200px;" alt="Tela de Login"/></td>
-    <td><img src="/screenshots/4.jpg" width="200px;" alt="Tela de Login"/></td>
+    <td><img src="/screenshots/3.jpg" width="200px;" alt="Tela de Cadastro"/></td>
+    <td><img src="/screenshots/4.jpg" width="200px;" alt="Tela de Administração"/></td>
   </tr>
   <tr>
     <td>Criar novo caso</td>
     <td>Visualização dos casos</td>
     <td>Filtro de casos</td>
+    <td>Visualização de um caso</td>
   </tr>
   <tr>
-    <td><img src="/screenshots/5.jpg" width="200px;" alt="Tela Inicial"/></td>
-    <td><img src="/screenshots/6.jpg" width="200px;" alt="Tela de Login"/></td>
-    <td><img src="/screenshots/7.jpg" width="200px;" alt="Tela de Login"/></td>
+    <td><img src="/screenshots/5.jpg" width="200px;" alt="Tela Criar novo caso"/></td>
+    <td><img src="/screenshots/6.jpg" width="200px;" alt="Tela de Visualização de casos"/></td>
+    <td><img src="/screenshots/7.jpg" width="200px;" alt="Tela de Filtro de casos"/></td>
+    <td><img src="/screenshots/8.png" width="200px;" height="400px" alt="Tela de caso"/></td>
   </tr>
  </table>
 
